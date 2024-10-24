@@ -1,0 +1,150 @@
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background: #e0f7fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    perspective: 1500px; /* Adds perspective for 3D effect */
+}
+
+.quiz-container {
+    width: 100%;
+    max-width: 800px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* 3D Background Animation */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ff6f61, #dce775);
+    transform: rotateX(25deg) rotateY(15deg);
+    background-size: 200% 200%;
+    animation: animateBackground 30s ease infinite;
+    z-index: -1;
+}
+
+@keyframes animateBackground {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #000000;
+}
+
+#question-header {
+    font-size: 1.5rem;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+#question-container {
+    margin-bottom: 20px;
+}
+
+#question {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #0095eb;
+}
+
+.btn-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 70px; /* Ensures space for the Next button */
+}
+
+.btn {
+    background-color: #009688; /* Vibrant teal color */
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+    background-color: #00796b; /* Darker teal */
+    transform: scale(1.05);
+}
+
+.btn.correct {
+    background-color: #4caf50; /* Green */
+}
+
+.btn.wrong {
+    background-color: #f44336; /* Red */
+}
+
+.hide {
+    display: none;
+}
+
+#next-btn {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    padding: 15px 30px;
+    background-color: #ff9800; /* Vibrant orange */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#next-btn:hover {
+    background-color: #f57c00; /* Darker orange */
+    transform: scale(1.1);
+}
+
+#restart-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #ff9800; /* Matching color with Next button */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#restart-btn:hover {
+    background-color: #f57c00; /* Darker orange */
+    transform: scale(1.05);
+}
+html, body { 
+  margin: 0;
+  overflow: hidden;
+}

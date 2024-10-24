@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="th.jpg" type="image/jpeg">
+
+    <title>Science Quiz</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Initial fade-in effect when the page loads */
+body.fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Transition for fade-out effect when navigating away */
+body.fade-out {
+    animation: fadeOut 0.5s ease-out forwards;
+}
+
+/* Keyframes for fade-in */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Keyframes for fade-out */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1c1f2b, #252835);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .quiz-container {
+            width: 100%;
+            max-width: 900px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #070306;
+            text-shadow: 0px 0px 15px #ff0095;
+            margin-bottom: 20px;
+        }
+
+        /* Back to Home Button */
+        #home-btn {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        #home-btn:hover {
+            background-color: #f57c00;
+            transform: scale(1.05);
+        }
+
+        #question-container {
+            margin-bottom: 20px;
+        }
+
+        #question {
+            font-size: 1.5rem;
+            margin: 20px;
+            color: #000000;
+            text-shadow: 0px 0px 10px #00ff99;
+        }
+
+        /* Button Grid */
+        .btn-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 70px;
+        }
+
+        /* Button Styles */
+        .btn {
+            background-color: #1f2941;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .btn:hover {
+            background-color: #ff0095;
+            transform: scale(1.05);
+        }
+
+        /* Next Button */
+        #next-btn {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            padding: 15px 30px;
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        #next-btn:hover {
+            background-color: #f57c00;
+            transform: scale(1.1);
+        }
+
+        /* Restart Button */
+        #restart-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        #restart-btn:hover {
+            background-color: #f57c00;
+            transform: scale(1.05);
+        }
+
+        /* Result Section */
+        #result {
+            font-size: 1.8rem;
+            color: #ff0095;
+            margin-bottom: 20px;
+            text-shadow: 0px 0px 15px #ff0095;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff4545, #00ff99, #006aff, #ff0095);
+            background-size: 300% 300%;
+            animation: gradientAnimation 10s ease infinite;
+            z-index: 0;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <button id="home-btn" onclick="location.href='homepage.html'">Back to Home</button> <!-- Back to Home Button -->
+    <h1>Science Quiz</h1>
+    <div id="question-container" class="hide">
+        <div id="question">Question text</div>
+        <div id="answer-buttons" class="btn-grid">
+            <!-- Answer buttons will be generated dynamically -->
+        </div>
+    </div>
+
+    <button id="next-btn" class="btn hide">Next</button>
+    <div id="result-container" class="hide">
+        <h2 id="result">You scored: <span id="score">0</span>/10</h2>
+        <button id="restart-btn" class="btn">Restart</button>
+    </div>
+</div>
+
+<script src="science.js" defer></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Apply fade-in effect when the page loads
+        document.body.classList.add('fade-in');
+
+        // Add event listener to all anchor links for the transition
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const href = this.getAttribute('href');
+
+                // Apply fade-out effect when a link is clicked
+                document.body.classList.add('fade-out');
+
+                // Wait for the fade-out animation to finish before navigating
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 1000); // 1 second delay (match with animation duration)
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
